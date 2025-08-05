@@ -3,9 +3,9 @@
 import { cn } from '@/lib/utils'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { Avatar, AvatarFallback } from '@/components/ui/avatar'
-import { Input } from '@/components/ui/input'
-//import { Button } from '@/components/ui/button'
+// import { Avatar, AvatarFallback } from '@/components/ui/avatar'
+import { Input } from '@/components/UI/input'
+// import { Button } from '@/components/ui/button'
 import { Search } from 'lucide-react'
 
 import { UserButton } from '@clerk/nextjs'
