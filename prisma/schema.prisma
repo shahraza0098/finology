@@ -1,0 +1,134 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl  = env("DIRECT_URL") // used only for migrations
+}
+
+
+
+//initial schema for the database
+
+model User {
+  id             String         @id @default(uuid())
+  clerkId        String         @unique
+  name           String?
+  email          String?
+  investorLevel InvestorLevel @default(Bronze)
+  totalInvested  Float          @default(0)
+  portfolio      Portfolio?
+  transactions   Transaction[]
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  reviews      Review[]
+
+}
+
+model Business {
+  id           String         @id @default(uuid())
+  name         String
+  description  String?
+  sector       String?
+  totalShares  Int
+  imageUrl     String? // optional
+  sharePrice   Float
+  location String? // optional
+  shares       Share[]
+  transactions Transaction[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  reviews      Review[]
+
+}
+
+model Share {
+  id            String         @id @default(uuid())
+  business      Business       @relation(fields: [businessId], references: [id])
+  businessId    String
+  priceAtBuy    Float
+  quantity      Int
+  status        ShareStatus    @default(OWNED)
+  portfolio     Portfolio?     @relation(fields: [portfolioId], references: [id])
+  portfolioId   String?
+  isListedForSale Boolean @default(false) //new line to track which share is listed for sell
+  transactions Transaction[] // Add this line
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  @@index([portfolioId])
+  @@index([businessId])
+}
+
+model Portfolio {
+  id         String    @id @default(uuid())
+  user       User      @relation(fields: [userId], references: [id])
+  userId     String    @unique
+  shares     Share[]
+  totalValue Float     @default(0)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+}
+
+model Transaction {
+  id          String           @id @default(uuid())
+  user        User             @relation(fields: [userId], references: [id])
+  userId      String
+  business    Business         @relation(fields: [businessId], references: [id])
+  businessId  String
+  share       Share            @relation(fields: [shareId], references: [id])
+  shareId     String
+  type        TransactionType
+  txnReferenceId String? // optional when the transaction is successful razorpay id
+  quantity    Int
+  price       Float
+  status      String           @default("SUCCESS")
+  createdAt   DateTime         @default(now())
+
+   @@index([userId])
+  @@index([businessId])
+}
+
+model Review {
+  id          String   @id @default(uuid())
+  business    Business @relation(fields: [businessId], references: [id])
+  businessId  String
+  investor    User     @relation(fields: [investorId], references: [id])
+  investorId  String
+  clerkId     String         
+  content     String
+  rating      Int
+  approved    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@index([businessId])
+  @@index([investorId])
+}
+
+enum ShareStatus {
+  OWNED
+  SOLD
+}
+
+enum TransactionType {
+  BUY
+  SELL
+}
+
+
+enum InvestorLevel {
+  Bronze
+  Silver
+  Gold
+  Platinum
+  VIP
+}

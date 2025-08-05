@@ -1,5 +1,10 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider } from '@clerk/nextjs'
+import { dark, neobrutalism, shadesOfPurple } from '@clerk/themes'
+
+import HeaderVisibility from "./(Pages)/(HomePage)/_components/HeaderVisibility";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,12 +23,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+    <ClerkProvider appearance={{baseTheme: shadesOfPurple}}>
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable}  antialiased `}
       >
+        <HeaderVisibility />
         {children}
       </body>
     </html>
+    </ClerkProvider>
   );
 }
