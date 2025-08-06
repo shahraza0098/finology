@@ -488,14 +488,14 @@
 
 import { useUser } from '@clerk/nextjs'
 import { useState, useEffect } from 'react'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/UI/button'
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogFooter,
   DialogTitle,
-} from '@/components/ui/dialog'
+} from '@/components/UI/dialog'
 import { toast } from 'sonner'
 import { Check, X } from 'lucide-react'
 import { Loader2 } from 'lucide-react'
