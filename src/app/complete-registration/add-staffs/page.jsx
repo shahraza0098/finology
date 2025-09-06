@@ -164,7 +164,7 @@
 import { Suspense } from "react"
 import AddStaff from "../_components/AddNewStaffs"
 
-export default function Page() {
+export default function AddStaffPage() {
   return (
     <Suspense fallback={<div>Loading staff...</div>}>
       <AddStaff />

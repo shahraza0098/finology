@@ -21,7 +21,7 @@ const schema = z.object({
   bio: z.string().optional(),
 });
 
-export default function AddNewStaff() {
+export default function AddNewStaffForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const businessId = searchParams.get("businessId");
