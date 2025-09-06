@@ -2,15 +2,14 @@
 
 import React, { useState, useEffect } from "react"
 import { Button } from "@/components/UI/button"
-import { useSearchParams } from "next/navigation"
+
 import { UserPlus, BriefcaseBusiness  } from "lucide-react"
 import AddNewStaffForm from "./AddStaffForm"
 import axios from "axios"
 
 
-function AddStaff() {
-  const searchParams = useSearchParams()
-  const businessId = searchParams.get("businessId")
+function AddStaff({businessId}) {
+ 
   if (!businessId) {
     return <div>Loading.......for business</div>
   }
@@ -73,7 +72,7 @@ function AddStaff() {
       {open && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/50">
           <div className="bg-white p-6 rounded-xl shadow-lg w-[400px]">
-            <AddNewStaffForm />
+            <AddNewStaffForm businessId={businessId} />
             <Button className="mt-4 w-full" onClick={() => setOpen(false)}>
               Close
             </Button>

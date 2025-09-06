@@ -161,14 +161,20 @@
 // export default AddStaff
 
 
-import { Suspense } from "react"
+// import { Suspense } from "react"
 import AddStaff from "../_components/AddNewStaffs"
 
-export default function AddStaffPage() {
+export default async function AddStaffPage({searchParams}) {
+  const params = await searchParams   // ✅ await the whole thing
+  const businessId = params.businessId
+  console.log("the search param", businessId);
+  
+  
+ 
   return (
-    <Suspense fallback={<div>Loading staff...</div>}>
-      <AddStaff />
-    </Suspense>
+    
+      <AddStaff businessId={businessId}/>
+    
   )
 }
 

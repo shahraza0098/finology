@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useRouter, useSearchParams } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { Input } from "@/components/UI/input"
 import { Button } from "@/components/UI/button"
 import { Form, FormField, FormItem, FormLabel, FormMessage, FormControl } from "@/components/UI/form"
@@ -15,10 +15,9 @@ const schema = z.object({
   achievements: z.string().optional().or(z.literal("")),
 })
 
-export default function CompanyMissions() {
+export default function CompanyMissions({businessId}) {
   const router = useRouter()
-  const searchParams = useSearchParams()
-  const businessId = searchParams.get("businessId")
+
 
   const methods = useForm({
     resolver: zodResolver(schema),

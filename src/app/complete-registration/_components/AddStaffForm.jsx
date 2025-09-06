@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/UI/input";
 import { Button } from "@/components/UI/button";
 import {
@@ -21,10 +21,9 @@ const schema = z.object({
   bio: z.string().optional(),
 });
 
-export default function AddNewStaffForm() {
+export default function AddNewStaffForm({businessId}) {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const businessId = searchParams.get("businessId");
+
 
   const form = useForm({
     resolver: zodResolver(schema),

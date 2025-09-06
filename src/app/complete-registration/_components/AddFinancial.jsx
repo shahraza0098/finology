@@ -25,9 +25,8 @@ const formSchema = z.object({
   cashFlow: z.string().optional(),
 })
 
-export default function FinancialRecordForm() {
-    const searchParams = useSearchParams()
-    const businessId = searchParams.get("businessId")
+export default function FinancialRecordForm({businessId}) {
+    
     
   const form = useForm({
     resolver: zodResolver(formSchema),

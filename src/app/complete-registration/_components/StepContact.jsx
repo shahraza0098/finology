@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useRouter, useSearchParams } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { Input } from "@/components/UI/input"
 import { Button } from "@/components/UI/button"
 import { Form, FormField, FormItem, FormLabel, FormMessage, FormControl } from "@/components/UI/form"
@@ -14,10 +14,9 @@ const schema = z.object({
   phone: z.string().min(10, "Phone must be at least 10 digits").optional().or(z.literal("")),
 })
 
-export default function ContactInfoPage() {
+export default function ContactInfoPage({businessId}) {
   const router = useRouter()
-  const searchParams = useSearchParams()
-  const businessId = searchParams.get("businessId")
+ 
 
   const methods = useForm({
     resolver: zodResolver(schema),

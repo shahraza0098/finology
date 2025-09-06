@@ -1,14 +1,18 @@
-"use client"
 
+import Layout from "./layout"
 
-function CompleteRegistration() {
+async function CompleteRegistration({searchParams}) {
 
+  const params = await searchParams   // ✅ await the whole thing
+  const businessId = params.businessId
   return (
+    <Layout businessId={businessId}>
     <div className='h-screen flex flex-col justify-center items-center'>
       
       <div>hello</div>
       <div>hello</div>
     </div>
+    </Layout>
   )
 }
 

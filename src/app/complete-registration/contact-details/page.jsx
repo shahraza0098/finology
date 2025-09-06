@@ -1,18 +1,18 @@
-'use client'
-import React,{ Suspense }  from 'react'
+
+import React from 'react'
 import ContactInfoPage from '../_components/StepContact'
 // import {  useSearchParams } from "next/navigation"
 
-function ContactDetails() {
+async function ContactDetails({searchParams}) {
 
-  // const searchParams = useSearchParams()
-  // const businessId = searchParams.get("businessId")
+     const params = await searchParams   
+    const businessId = params.businessId
   return (
-    <Suspense fallback={<div>Loading staff...</div>}>
+    
     <div>
-      <ContactInfoPage/>
+      <ContactInfoPage businessId={businessId}/>
     </div>
-    </Suspense>
+    
   )
 }
 

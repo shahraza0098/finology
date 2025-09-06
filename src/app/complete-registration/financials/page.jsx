@@ -1,13 +1,15 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import FinancialRecordForm from '../_components/AddFinancial'
 
-function Finacials() {
+async function Finacials() {
+      const params = await searchParams   
+    const businessId = params.businessId
   return (
-    <Suspense fallback={<div>Loading staff...</div>}>
+    
     <div>
-      <FinancialRecordForm/>
+      <FinancialRecordForm businessId={businessId}/>
     </div>
-    </Suspense>
+   
   )
 }
 

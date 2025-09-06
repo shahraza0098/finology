@@ -1,14 +1,16 @@
-'use client'
+
 import CompanyMissions from '../_components/StepMission'
-import { Suspense } from 'react'
-function CompanyMission() {
+
+async function CompanyMission({searchParams}) {
+    const params = await searchParams   
+    const businessId = params.businessId
 
   return (
-    <Suspense fallback={<div>Loading staff...</div>}>
+    
     <div>
-     <CompanyMissions />
+     <CompanyMissions businessId={businessId} />
     </div>
-    </Suspense>
+    
   )
 }
 
