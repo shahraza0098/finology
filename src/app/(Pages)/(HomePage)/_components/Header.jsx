@@ -13,7 +13,7 @@ export default function Header() {
 // }
 
   return (
-    <header className="absolute inset-x-0 top-0 z-50">
+    <header className="absolute inset-x-0 top-0 z-50 bg-[#4E71FF]">
       <div className="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center text-white">
         <div className="text-xl font-bold">🌐</div>
 

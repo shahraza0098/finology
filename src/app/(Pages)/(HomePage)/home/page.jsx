@@ -3,6 +3,12 @@
 "use client";
 import Hero from "../_components/HeroSec";
 import Features from "../_components/Features";
+import FeaturedBusinesses from "../_components/BusinessList";
+import HowItWorks from "../_components/HowItWorks";
+
+import CallToAction from "../_components/CallToAction";
+import Footer from "../_components/Footer";
+import MarketTicker from "../_components/MarketTicker";
 // import { useUser } from "@clerk/nextjs";
 // import { useEffect } from "react";
 
@@ -34,8 +40,14 @@ export default function HomePage() {
   return (
     <main className="relative">
       {/* <Header/> */}
+      
       <Hero />
       <Features />
+      <MarketTicker/>
+      <FeaturedBusinesses/>
+      <HowItWorks/>
+      <CallToAction/>
+      <Footer/>
     </main>
   );
 

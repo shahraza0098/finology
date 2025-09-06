@@ -4,6 +4,18 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  display: inline-block;
+  padding-left: 100%; /* creates spacing */
+  animation: marquee 30s linear infinite;
+}
+
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -46,19 +58,19 @@
 
 :root {
   --radius: 0.625rem;
-  --background: #231942;
-  --foreground: #e0b1cb;
+  --background: #BBFBFF;
+  --foreground: #4E71FF;
   --card: #231942;
-  --card-foreground: #e0b1cb;
+  --card-foreground: #4E71FF;
   --popover: #231942;
-  --popover-foreground: #e0b1cb;
+  --popover-foreground: #4E71FF;
   --primary: #9f86c0;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: #be95c4;
   --secondary-foreground: #231942;
   --muted: #5e548e;
-  --muted-foreground: #e0b1cb;
-  --accent: #e0b1cb;
+  --muted-foreground: #4E71FF;
+  --accent: #4E71FF;
   --accent-foreground: #231942;
   --destructive: oklch(0.577 0.245 27.325);
   --border: #5e548e;
@@ -123,5 +135,22 @@
 }
 
 /* progress bar animation css ---onboarding step */
+
+
+/* ticker animation css */
+@keyframes scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  display: inline-flex;
+  animation: scroll 20s linear infinite;
+}
+
 
 

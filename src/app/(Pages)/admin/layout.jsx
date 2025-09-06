@@ -1,93 +1,373 @@
+// 'use client'
+
+// import { cn } from '@/lib/utils'
+// import { usePathname } from 'next/navigation'
+// import Link from 'next/link'
+// // import { Avatar, AvatarFallback } from '@/components/ui/avatar'
+// import { Input } from '@/components/UI/input'
+// // import { Button } from '@/components/ui/button'
+// import { Search } from 'lucide-react'
+
+// import { UserButton } from '@clerk/nextjs'
+
+
+
+
+// const navLinks = [
+//   { name: 'Businesses', href: '/admin/businesses' },
+//   { name: 'Investors', href: '/admin/investors' },
+//   { name: 'Reports', href: '/admin/reports' },
+// ]
+
+// export default function AdminLayout({ children }) {
+//   const pathname = usePathname()
+
+//   return (
+//     <div className="min-h-screen flex">
+//       {/* Sidebar */}
+//       <aside className="w-64 bg-white border-r p-4 flex flex-col justify-between">
+//         <div>
+//           <div className="text-2xl font-bold mb-6 text-primary">Admin Dashboard Pro</div>
+//           <nav className="space-y-1">
+//             {navLinks.map(link => (
+//               <Link
+//                 key={link.name}
+//                 href={link.href}
+//                 className={cn(
+//                   'block px-4 py-2 rounded-lg font-medium',
+//                   pathname.startsWith(link.href)
+//                     ? 'bg-primary text-white'
+//                     : 'hover:bg-gray-100 text-gray-700'
+//                 )}
+//               >
+//                 {link.name}
+//               </Link>
+//             ))}
+//           </nav>
+//         </div>
+//         <div className="text-sm text-gray-600">
+//           <p>Admin User</p>
+//           <p className="text-xs">Settings | Logout</p>
+//         </div>
+//       </aside>
+
+//       {/* Main Content */}
+//       <main className="flex-1 bg-gray-50">
+//         {/* Top Bar */}
+//         <header className="bg-white shadow px-6 py-4 flex items-center justify-between">
+//           <div className="flex gap-6 text-sm text-gray-600 font-medium">
+//             {navLinks.map(link => (
+//               <Link
+//                 key={link.name}
+//                 href={link.href}
+//                 className={cn(
+//                   'hover:text-primary',
+//                   pathname.startsWith(link.href) && 'text-primary font-semibold underline'
+//                 )}
+//               >
+//                 {link.name}
+//               </Link>
+//             ))}
+//           </div>
+
+//           <div className="flex items-center gap-4">
+//             <div className="relative w-72">
+//               <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
+//               <Input
+//                 placeholder="Search businesses, investors..."
+//                 className="pl-8 bg-gray-100"
+//               />
+//             </div>
+//             <div className="w-8 h-8">
+//               <UserButton />
+//             </div>
+//           </div>
+//         </header>
+
+//         {/* Page Content */}
+        
+//         <div className="p-6">{children}</div>
+//       </main>
+//     </div>
+//   )
+// }
+
+
+
+// 'use client'
+
+// import { cn } from '@/lib/utils'
+// import { usePathname } from 'next/navigation'
+// import { UserButton } from '@clerk/nextjs'
+// import React, { useState } from 'react'
+// import { Sidebar, SidebarBody, SidebarLink } from '@/components/UI/sidebar'
+// import {
+  
+//   IconBrandTabler,
+ 
+// } from '@tabler/icons-react'
+// import { Building2, Users, ClipboardCheck   } from 'lucide-react';
+// import { motion } from 'motion/react'
+
+// // ---------------- Logo ----------------
+// export const Logo = () => (
+//   <a
+//     href="#"
+//     className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal text-black"
+//   >
+//     <div className="h-5 w-6 shrink-0 rounded-tl-lg rounded-tr-sm rounded-br-lg rounded-bl-sm bg-black dark:bg-white" />
+//     <motion.span
+//       initial={{ opacity: 0 }}
+//       animate={{ opacity: 1 }}
+//       className="font-medium whitespace-pre text-black dark:text-white"
+//     >
+//       Acet Labs
+//     </motion.span>
+//   </a>
+// )
+
+// export const LogoIcon = () => (
+//   <a
+//     href="#"
+//     className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal text-black"
+//   >
+//     <div className="h-5 w-6 shrink-0 rounded-tl-lg rounded-tr-sm rounded-br-lg rounded-bl-sm bg-black dark:bg-white" />
+//   </a>
+// )
+
+// // ---------------- Sidebar Links ----------------
+// const links = [
+//   {
+//     label: 'Dashboard',
+//     href: '/admin',
+//     icon: (
+//       <IconBrandTabler className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+//     ),
+//   },
+//   {
+//     label: 'Businesses',
+//     href: '/admin/businesses',
+//     icon: (
+//       <Building2 className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+//     ),
+//   },
+//   {
+//     label: 'Investors',
+//     href: '/admin/investors',
+//     icon: (
+//       <Users className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+//     ),
+//   },
+//   {
+//     label: 'Reports',
+//     href: '/admin/reports',
+//     icon: (
+//       <ClipboardCheck className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200"  />
+//     ),
+//   },
+// ]
+
+// // ---------------- Layout ----------------
+// export default function AdminLayout({ children }) {
+//   const pathname = usePathname()
+//   const [open, setOpen] = useState(false)
+
+//   return (
+//     <div className="flex min-h-screen bg-gray-50 dark:bg-neutral-900">
+//       {/* Sidebar */}
+//       <Sidebar open={open} setOpen={setOpen}>
+//         <SidebarBody className="justify-between gap-10">
+//           <div className="flex flex-1 flex-col overflow-x-hidden overflow-y-auto">
+//             {open ? <Logo /> : <LogoIcon />}
+//             <div className="mt-8 flex flex-col gap-2">
+//               {links.map((link, idx) => (
+//                 <SidebarLink key={idx} link={link} />
+//               ))}
+//             </div>
+//           </div>
+//           <div>
+//             <SidebarLink
+//               link={{
+//                 label: 'Admin User',
+//                 href: '#',
+//                 icon: (
+//                   <img
+//                     src="https://assets.aceternity.com/manu.png"
+//                     className="h-7 w-7 shrink-0 rounded-full"
+//                     width={50}
+//                     height={50}
+//                     alt="Avatar"
+//                   />
+//                 ),
+//               }}
+//             />
+//           </div>
+//         </SidebarBody>
+//       </Sidebar>
+
+//       {/* Main Content */}
+//       <main className="flex flex-1 flex-col">
+//         {/* Top Bar */}
+//         <header className="flex items-center justify-between border-b bg-gray-200 px-6 py-3 shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
+//           <h1 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+//             {pathname === '/admin'
+//               ? 'Dashboard'
+//               : pathname.replace('/admin/', '').toUpperCase()}
+//           </h1>
+//           <UserButton afterSignOutUrl="/" />
+//         </header>
+
+//         {/* Page Content with rounded corner near sidebar */}
+//         <div className="flex-1 m-6 p-6">
+//           <div className="h-full m-6 w-full rounded-tl-2xl bg-white shadow-sm dark:bg-neutral-800">
+//             {children}
+//           </div>
+//         </div>
+//       </main>
+//     </div>
+//   )
+// }
+
+
+
+
+///header fixed on top : 
+
+
+
 'use client'
 
-import { cn } from '@/lib/utils'
 import { usePathname } from 'next/navigation'
-import Link from 'next/link'
-// import { Avatar, AvatarFallback } from '@/components/ui/avatar'
-import { Input } from '@/components/UI/input'
-// import { Button } from '@/components/ui/button'
-import { Search } from 'lucide-react'
-
 import { UserButton } from '@clerk/nextjs'
+import React, { useState } from 'react'
+import { Sidebar, SidebarBody, SidebarLink } from '@/components/UI/sidebar'
+import { IconBrandTabler } from '@tabler/icons-react'
+import { Building2, Users, ClipboardCheck } from 'lucide-react'
+import { motion } from 'motion/react'
 
+// ---------------- Logo ----------------
+export const Logo = () => (
+  <a
+    href="#"
+    className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal text-black"
+  >
+    <div className="h-5 w-6 shrink-0 rounded-tl-lg rounded-tr-sm rounded-br-lg rounded-bl-sm bg-black dark:bg-white" />
+    <motion.span
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="font-medium whitespace-pre text-black dark:text-white"
+    >
+      Acet Labs
+    </motion.span>
+  </a>
+)
 
+export const LogoIcon = () => (
+  <a
+    href="#"
+    className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal text-black"
+  >
+    <div className="h-5 w-6 shrink-0 rounded-tl-lg rounded-tr-sm rounded-br-lg rounded-bl-sm bg-black dark:bg-white" />
+  </a>
+)
 
-
-const navLinks = [
-  { name: 'Businesses', href: '/admin/businesses' },
-  { name: 'Investors', href: '/admin/investors' },
-  { name: 'Reports', href: '/admin/reports' },
+// ---------------- Sidebar Links ----------------
+const links = [
+  {
+    label: 'Dashboard',
+    href: '/admin',
+    icon: (
+      <IconBrandTabler className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+    ),
+  },
+  {
+    label: 'Businesses',
+    href: '/admin/businesses',
+    icon: (
+      <Building2 className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+    ),
+  },
+  {
+    label: 'Investors',
+    href: '/admin/investors',
+    icon: (
+      <Users className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+    ),
+  },
+  {
+    label: 'Reports',
+    href: '/admin/reports',
+    icon: (
+      <ClipboardCheck className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+    ),
+  },
 ]
 
+// ---------------- Layout ----------------
 export default function AdminLayout({ children }) {
   const pathname = usePathname()
+  const [open, setOpen] = useState(false)
 
   return (
-    <div className="min-h-screen flex">
-      {/* Sidebar */}
-      <aside className="w-64 bg-white border-r p-4 flex flex-col justify-between">
-        <div>
-          <div className="text-2xl font-bold mb-6 text-primary">Admin Dashboard Pro</div>
-          <nav className="space-y-1">
-            {navLinks.map(link => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={cn(
-                  'block px-4 py-2 rounded-lg font-medium',
-                  pathname.startsWith(link.href)
-                    ? 'bg-primary text-white'
-                    : 'hover:bg-gray-100 text-gray-700'
-                )}
-              >
-                {link.name}
-              </Link>
-            ))}
-          </nav>
-        </div>
-        <div className="text-sm text-gray-600">
-          <p>Admin User</p>
-          <p className="text-xs">Settings | Logout</p>
-        </div>
-      </aside>
+    <div className="min-h-screen bg-gray-500 dark:bg-neutral-900">
+      {/* Fixed Top Header */}
+      <header className="fixed top-0 left-0 right-0 z-30 flex items-center justify-between border-b bg-gray-200 px-6 py-3 shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
+        <h1 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+          {/* {pathname === '/admin'
+            ? 'Dashboard'
+            : pathname.replace('/admin/', '').toUpperCase()} */}
+            Admin Dashboard
+        </h1>
+        <UserButton afterSignOutUrl="/" />
+      </header>
 
-      {/* Main Content */}
-      <main className="flex-1 bg-gray-50">
-        {/* Top Bar */}
-        <header className="bg-white shadow px-6 py-4 flex items-center justify-between">
-          <div className="flex gap-6 text-sm text-gray-600 font-medium">
-            {navLinks.map(link => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={cn(
-                  'hover:text-primary',
-                  pathname.startsWith(link.href) && 'text-primary font-semibold underline'
-                )}
-              >
-                {link.name}
-              </Link>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-4">
-            <div className="relative w-72">
-              <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
-              <Input
-                placeholder="Search businesses, investors..."
-                className="pl-8 bg-gray-100"
+      {/* Page Layout (Sidebar + Main) */}
+      <div className="flex mt-[53px]">
+        {/* Sidebar (with padding so logo is below header) */}
+        <Sidebar open={open} setOpen={setOpen}>
+          <SidebarBody className="justify-between gap-10 pt-[56px]">
+            <div className="flex flex-1 flex-col overflow-x-hidden overflow-y-auto">
+              {open ? <Logo /> : <LogoIcon />}
+              <div className="mt-8 flex flex-col gap-2">
+                {links.map((link, idx) => (
+                  <SidebarLink key={idx} link={link} />
+                ))}
+              </div>
+            </div>
+            <div>
+              <SidebarLink
+                link={{
+                  label: 'Admin User',
+                  href: '#',
+                  icon: (
+                    <img
+                      src="https://assets.aceternity.com/manu.png"
+                      className="h-7 w-7 shrink-0 rounded-full"
+                      width={50}
+                      height={50}
+                      alt="Avatar"
+                    />
+                  ),
+                }}
               />
             </div>
-            <div className="w-8 h-8">
-              <UserButton />
+          </SidebarBody>
+        </Sidebar>
+
+        </div>
+
+        {/* Main Content */}
+        {/* <main className="flex flex-1 flex-col ">
+          <div className="flex-1  ">
+            <div className="h-full m-6 w-full rounded-tl-2xl bg-white shadow-sm dark:bg-neutral-800">
+              {children}
             </div>
           </div>
-        </header>
-
-        {/* Page Content */}
-        
-        <div className="p-6">{children}</div>
-      </main>
+        </main> */}
+        <main className="flex flex-1 flex-col  m-4 md:ml-[70px]">
+                {children}
+        </main>
+      
     </div>
   )
 }

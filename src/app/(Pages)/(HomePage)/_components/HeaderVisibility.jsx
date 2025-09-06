@@ -34,6 +34,7 @@ const hiddenRoutes = [
   /^\/onboarding$/,
   /^\/admin(\/.*)?$/,           // Matches /admin and any nested path like /admin/users
   /^\/add-business(\/.*)?$/,    // Matches /add-business and any nested
+  /^\/complete-registration$/,   // Matches exactly /complete-registration
 ];
 
 export default function HeaderVisibility() {

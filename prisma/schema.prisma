@@ -19,37 +19,259 @@ datasource db {
 
 //initial schema for the database
 
-model User {
-  id             String         @id @default(uuid())
-  clerkId        String         @unique
-  name           String?
-  email          String?
-  investorLevel InvestorLevel @default(Bronze)
-  totalInvested  Float          @default(0)
-  portfolio      Portfolio?
-  transactions   Transaction[]
-  createdAt      DateTime       @default(now())
-  updatedAt      DateTime       @updatedAt
-  reviews      Review[]
+// model User {
+//   id             String         @id @default(uuid())
+//   clerkId        String         @unique
+//   name           String?
+//   email          String?
+//   investorLevel InvestorLevel @default(Bronze)
+//   totalInvested  Float          @default(0)
+//   portfolio      Portfolio?
+//   transactions   Transaction[]
+//   createdAt      DateTime       @default(now())
+//   updatedAt      DateTime       @updatedAt
+//   reviews      Review[]
 
-}
+// }
+
+// model Business {
+//   id           String         @id @default(uuid())
+//   name         String
+//   description  String?
+//   sector       String?
+//   totalShares  Int
+//   imageUrl     String? // optional
+//   sharePrice   Float
+//   location String? // optional
+//   shares       Share[]
+//   transactions Transaction[]
+//   createdAt    DateTime       @default(now())
+//   updatedAt    DateTime       @updatedAt
+//   reviews      Review[]
+
+// }
+
+// model Share {
+//   id            String         @id @default(uuid())
+//   business      Business       @relation(fields: [businessId], references: [id])
+//   businessId    String
+//   priceAtBuy    Float
+//   quantity      Int
+//   status        ShareStatus    @default(OWNED)
+//   portfolio     Portfolio?     @relation(fields: [portfolioId], references: [id])
+//   portfolioId   String?
+//   isListedForSale Boolean @default(false) //new line to track which share is listed for sell
+//   transactions Transaction[] // Add this line
+//   createdAt     DateTime       @default(now())
+//   updatedAt     DateTime       @updatedAt
+
+//   @@index([portfolioId])
+//   @@index([businessId])
+// }
+
+// model Portfolio {
+//   id         String    @id @default(uuid())
+//   user       User      @relation(fields: [userId], references: [id])
+//   userId     String    @unique
+//   shares     Share[]
+//   totalValue Float     @default(0)
+//   createdAt  DateTime  @default(now())
+//   updatedAt  DateTime  @updatedAt
+// }
+
+// model Transaction {
+//   id          String           @id @default(uuid())
+//   user        User             @relation(fields: [userId], references: [id])
+//   userId      String
+//   business    Business         @relation(fields: [businessId], references: [id])
+//   businessId  String
+//   share       Share            @relation(fields: [shareId], references: [id])
+//   shareId     String
+//   type        TransactionType
+//   txnReferenceId String? // optional when the transaction is successful razorpay id
+//   quantity    Int
+//   price       Float
+//   status      String           @default("SUCCESS")
+//   createdAt   DateTime         @default(now())
+
+//    @@index([userId])
+//   @@index([businessId])
+// }
+
+// model Review {
+//   id          String   @id @default(uuid())
+//   business    Business @relation(fields: [businessId], references: [id])
+//   businessId  String
+//   investor    User     @relation(fields: [investorId], references: [id])
+//   investorId  String
+//   clerkId     String         
+//   content     String
+//   rating      Int
+//   status      ReviewStatus @default(PENDING) // PENDING, APPROVED, REJECTED
+//   createdAt   DateTime @default(now())
+
+//   @@index([businessId])
+//   @@index([investorId])
+// }
+
+// enum ReviewStatus {
+//   PENDING
+//   APPROVED
+//   REJECTED
+// }
+
+// enum ShareStatus {
+//   OWNED
+//   SOLD
+// }
+
+// enum TransactionType {
+//   BUY
+//   SELL
+// }
+
+
+// enum InvestorLevel {
+//   Bronze
+//   Silver
+//   Gold
+//   Platinum
+//   VIP
+// }
+
+
+
+//new schema according to the latest requirements by the client
+
+
 
 model Business {
   id           String         @id @default(uuid())
   name         String
+  founded DateTime?
+  isFormCompleted Boolean   @default(false)
+
+  //complete address 
+  streetLine1  String?
+  streetLine2  String?
+  city         String?
+  state        String?
+  pincode      String?
+  country      String?
+
+  // Contact & General Info
+  website      String?
+  email        String?
+  phone        String?
+
+  // Mission, Vision, Values
+  mission      String?
+  vision       String?
+  coreValues   String?         // Comma-separated or JSON text
   description  String?
-  sector       String?
-  totalShares  Int
-  imageUrl     String? // optional
-  sharePrice   Float
-  location String? // optional
+
+  // Products & Management
+  products     Product[]
+  management   ManagementMember[]
+  financials   FinancialRecord[] 
+
+  // Achievements
+  achievements String?         // Comma-separated or JSON text
+
+  // Registration / Tax
+  registrationNumber String?
+  taxId             String?
+
+  // Social Media
+  linkedin     String?
+  facebook     String?
+  instagram    String?
+  twitter      String?
+
+  // Financial Overview
+
+  // Existing fields
+  sector       SectorCategory?
+  totalShares  Int?
+  logoUrl     String? 
+  sharePrice   Float?
   shares       Share[]
   transactions Transaction[]
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
   reviews      Review[]
 
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
 }
+
+
+// model FinancialRecord {
+//   id         String    @id @default(uuid())
+//   business   Business  @relation(fields: [businessId], references: [id])
+//   businessId String
+  
+
+//   period     String    // e.g., "2024-Q1" or "FY2024"
+//   recordDate   DateTime 
+
+//   revenue    Float
+//   netProfit  Float
+//   profitMargin Float?
+//   operatingExpenses Float?
+//   ebitda     Float?
+//   assets     Float?
+//   liabilities Float?
+//   equity     Float?
+//   cashFlow   Float?
+
+//   createdAt  DateTime @default(now())
+// }
+
+
+model FinancialRecord {
+  id         String    @id @default(uuid())
+  business   Business  @relation(fields: [businessId], references: [id])
+  businessId String
+
+  // Time dimensions
+  year       Int       // User picks from dropdown (e.g., 2024)
+  quarter    Quarter?  // Nullable if only annual data
+  recordDate DateTime  // Can default to end of that quarter/year
+
+  // Financial metrics
+  revenue           Float
+  netProfit         Float
+  profitMargin      Float?
+  operatingExpenses Float?
+  ebitda            Float?
+  assets            Float?
+  liabilities       Float?
+  equity            Float?
+  cashFlow          Float?
+
+  createdAt  DateTime @default(now())
+
+  @@index([businessId, year, quarter])
+}
+
+
+model Product {
+  id          String   @id @default(uuid())
+  business    Business @relation(fields: [businessId], references: [id])
+  businessId  String
+  name        String
+  description String?
+}
+
+model ManagementMember {
+  id          String   @id @default(uuid())
+  business    Business @relation(fields: [businessId], references: [id])
+  businessId  String
+  name        String
+  title       String
+  bio         String?
+}
+
+// ---------------- Existing Models ----------------
 
 model Share {
   id            String         @id @default(uuid())
@@ -60,8 +282,8 @@ model Share {
   status        ShareStatus    @default(OWNED)
   portfolio     Portfolio?     @relation(fields: [portfolioId], references: [id])
   portfolioId   String?
-  isListedForSale Boolean @default(false) //new line to track which share is listed for sell
-  transactions Transaction[] // Add this line
+  isListedForSale Boolean @default(false)
+  transactions  Transaction[]
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
 
@@ -88,14 +310,14 @@ model Transaction {
   share       Share            @relation(fields: [shareId], references: [id])
   shareId     String
   type        TransactionType
-  txnReferenceId String? // optional when the transaction is successful razorpay id
+  txnReferenceId String?
   quantity    Int
   price       Float
   status      String           @default("SUCCESS")
   createdAt   DateTime         @default(now())
 
    @@index([userId])
-  @@index([businessId])
+   @@index([businessId])
 }
 
 model Review {
@@ -107,11 +329,31 @@ model Review {
   clerkId     String         
   content     String
   rating      Int
-  approved    Boolean  @default(false)
+  status      ReviewStatus @default(PENDING)
   createdAt   DateTime @default(now())
 
   @@index([businessId])
   @@index([investorId])
+}
+
+model User {
+  id             String         @id @default(uuid())
+  clerkId        String         @unique
+  name           String?
+  email          String?
+  investorLevel  InvestorLevel  @default(Bronze)
+  totalInvested  Float          @default(0)
+  portfolio      Portfolio?
+  transactions   Transaction[]
+  reviews        Review[]
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+}
+
+enum ReviewStatus {
+  PENDING
+  APPROVED
+  REJECTED
 }
 
 enum ShareStatus {
@@ -124,11 +366,25 @@ enum TransactionType {
   SELL
 }
 
-
 enum InvestorLevel {
   Bronze
   Silver
   Gold
   Platinum
   VIP
+}
+
+enum SectorCategory {
+  FMCG
+  Transport
+  Pharma
+  RealEstate
+  Gadgets
+}
+
+enum Quarter {
+  Q1
+  Q2
+  Q3
+  Q4
 }

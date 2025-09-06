@@ -1,5 +1,5 @@
 'use client'
-
+import { useSearchParams } from "next/navigation"
 import { BusinessFormContextProvider } from '@/context/BusinessFormContext'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -7,26 +7,42 @@ import { cn } from '@/lib/utils'
 import Image from 'next/image'
 
 
-const steps = [
-  {
-    label: 'Business Info',
-    icon: '🏢',
-    path: '/add-business/business-info',
-  },
-  {
-    label: 'Business Number',
-    icon: '📈',
-    path: '/add-business/share-details',
-  },
-  {
-    label: 'Location',
-    icon: '📍',
-    path: '/add-business/add-location',
-  },
-]
+
+
+
 
 export default function Layout({ children }) {
   const pathname = usePathname()
+    const searchParams = useSearchParams()
+  const businessId = searchParams.get("businessId")
+    const steps = [
+  {
+    label: 'Contact Details',
+    icon: '📞',
+    path: `/complete-registration/contact-details?businessId=${businessId}`,
+  },
+  {
+    label: 'Company Mission',
+    icon: '🎯',
+    path: `/complete-registration/company-mission?businessId=${businessId}`,
+  },
+  {
+    label: 'Staff',
+    icon: '👥',
+    path: `/complete-registration/add-staffs?businessId=${businessId}`,
+  },
+  {
+    label: 'Financials',
+    icon: '💰',
+    path: `/complete-registration/financials?businessId=${businessId}`,
+  },
+  {
+    label:'Products',
+    icon: '🛍️',
+    path: `/complete-registration/add-products?businessId=${businessId}`,
+  }
+]
+
 
   return (
     <BusinessFormContextProvider>
@@ -38,7 +54,8 @@ export default function Layout({ children }) {
             <h2 className="text-2xl font-bold mb-8 tracking-wide text-white">Business Steps</h2>
             <ul className="space-y-6">
               {steps.map((step) => {
-                const isActive = pathname.includes(step.path)
+                const isActive = pathname === step.path.split("?")[0]
+
                 return (
                   <li key={step.label} className="flex items-center gap-4">
                     <div

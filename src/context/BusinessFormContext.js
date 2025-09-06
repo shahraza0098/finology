@@ -12,7 +12,7 @@ export function BusinessFormContextProvider({ children }) {
   }
 
   return (
-    <BusinessFormContext.Provider value={{ form, updateForm }}>
+    <BusinessFormContext.Provider value={{  form, updateForm }}>
       {children}
     </BusinessFormContext.Provider>
   )

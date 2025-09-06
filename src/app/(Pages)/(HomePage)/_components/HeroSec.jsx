@@ -8,7 +8,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden isolate flex items-center justify-center min-h-screen text-white">
+    <section className="relative overflow-hidden isolate flex items-center justify-center min-h-screen text-[#4E71FF]">
       {/* Animated Beams Background */}
       <BackgroundBeams className="z-0" />
 
@@ -19,19 +19,19 @@ export default function Hero() {
           <h1 className="text-4xl sm:text-5xl font-bold leading-tight">
             Invest in Local <br /> Businesses
           </h1>
-          <p className="text-lg text-gray-300">
+          <p className="text-lg text-neutral-700">
             Buy, sell, and track shares in local businesses. Support communities while growing your portfolio.
           </p>
           <div className="flex gap-4">
             <a
               href="#"
-              className="bg-indigo-500 hover:bg-indigo-600 text-white px-6 py-3 rounded-md font-medium transition"
+              className="bg-[#5409DA] hover:bg-indigo-600 text-white px-6 py-3 rounded-md font-medium transition"
             >
               Get Started
             </a>
             <a
               href="#"
-              className="text-sm font-semibold text-white hover:text-indigo-400 flex items-center gap-1"
+              className="text-sm font-semibold text-[#4E71FF] hover:text-indigo-400 flex items-center gap-1"
             >
               Learn More →
             </a>
