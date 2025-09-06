@@ -71,6 +71,7 @@
 
 
 "use client"
+import { Suspense } from 'react'
 import React, { useState, useEffect } from "react"
 import { Button } from "@/components/UI/button"
 import { useSearchParams } from "next/navigation"
@@ -108,6 +109,7 @@ function AddStaff() {
   const [open, setOpen] = useState(false)
 
   return (
+    <Suspense fallback={<div>Loading staff...</div>}>
    
     <div className="flex flex-col items-center justify-center gap-6">
       <h1 className="text-xl font-semibold">Team Members</h1>
@@ -151,7 +153,7 @@ function AddStaff() {
         </div>
       )}
     </div>
-    
+    </Suspense>
     
   )
 }
