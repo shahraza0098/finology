@@ -78,6 +78,7 @@ import { UserPlus, BriefcaseBusiness  } from "lucide-react"
 import AddNewStaff from "../_components/AddStaff"
 import axios from "axios"
 
+
 function AddStaff() {
   const searchParams = useSearchParams()
   const businessId = searchParams.get("businessId")
@@ -107,6 +108,7 @@ function AddStaff() {
   const [open, setOpen] = useState(false)
 
   return (
+   
     <div className="flex flex-col items-center justify-center gap-6">
       <h1 className="text-xl font-semibold">Team Members</h1>
 
@@ -149,6 +151,8 @@ function AddStaff() {
         </div>
       )}
     </div>
+    
+    
   )
 }
 
