@@ -1,7 +1,7 @@
 import React from 'react'
 import FinancialRecordForm from '../_components/AddFinancial'
 
-async function Finacials() {
+async function Finacials({searchParams}) {
       const params = await searchParams   
     const businessId = params.businessId
     if (!businessId) {
