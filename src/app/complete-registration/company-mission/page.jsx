@@ -5,6 +5,10 @@ async function CompanyMission({searchParams}) {
     const params = await searchParams   
     const businessId = params.businessId
 
+    if (!businessId) {
+    return <div>Loading.......for mission</div>
+  }
+
   return (
     
     <div>

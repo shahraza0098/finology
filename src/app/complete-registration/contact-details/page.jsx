@@ -7,6 +7,9 @@ async function ContactDetails({searchParams}) {
 
      const params = await searchParams   
     const businessId = params.businessId
+    if (!businessId) {
+    return <div>Loading.......for contact details</div>
+  }
   return (
     
     <div>
