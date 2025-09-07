@@ -117,13 +117,18 @@
 import { BusinessFormContextProvider } from "@/context/BusinessFormContext"
 import Sidebar from "./_components/LayoutSidebar"
 
-export default async function Layout({ children, businessId }) {
+export default  function Layout({ children   }) {
+  
+    
+//  const params = await searchParams   // ✅ await the whole thing
+//   const businessId = params?.businessId
+  // const businessId = "6ad35eee-d012-4fca-90bc-8990316555e8"
   
 
   return (
     <BusinessFormContextProvider>
       <div className="min-h-screen flex bg-gradient-to-br from-[#231942] via-[#5e548e] to-[#9f86c0] text-white">
-        <Sidebar businessId={businessId} />  {/* ✅ client */}
+        <Sidebar   />  
         <main className="flex-1 p-10 bg-[#f9f7fb] text-black">
           <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl p-10">
             {children}

@@ -1,13 +1,36 @@
 // src/app/complete-registration/Sidebar.jsx
 "use client"
-
+ 
+import { useSearchParams } from 'next/navigation'
 import { usePathname } from "next/navigation"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
 
-export default function Sidebar({ businessId }) {
+export default  function Sidebar() {
   const pathname = usePathname()
+  //  const params =  searchParams   // ✅ await the whole thing
+  // const businessId = params.businessId
+  //  const searchParams = use(props.searchParams)
+  //  const query = searchParams.query
+  //  console.log("searchParams in sidebar:", query);
+  const searchParams = useSearchParams()
+  const businessId = searchParams.get("businessId")
+
+  // if(!businessId){
+  //   return (
+  //     <div>Loading.....</div>
+  //   )
+  // }
+
+  console.log("business ID wow dede ",businessId);
+  
+   
+  
+  // const searchParams = use(props.searchParams)
+  // const businessId = searchParams.businessId
+  // const businessId = searchParams?.businessId
+  // console.log("businessId in sidebar:", businessId)
 
   const steps = [
     { label: "Contact Details", icon: "📞", path: `/complete-registration/contact-details?businessId=${businessId}` },
