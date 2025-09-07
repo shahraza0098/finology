@@ -114,6 +114,7 @@
 
 
 // src/app/complete-registration/layout.jsx
+import { Suspense } from 'react'
 import { BusinessFormContextProvider } from "@/context/BusinessFormContext"
 import Sidebar from "./_components/LayoutSidebar"
 
@@ -128,7 +129,9 @@ export default  function Layout({ children   }) {
   return (
     <BusinessFormContextProvider>
       <div className="min-h-screen flex bg-gradient-to-br from-[#231942] via-[#5e548e] to-[#9f86c0] text-white">
+        <Suspense fallback={<div>Loading...</div>}>
         <Sidebar   />  
+        </Suspense>
         <main className="flex-1 p-10 bg-[#f9f7fb] text-black">
           <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl p-10">
             {children}
