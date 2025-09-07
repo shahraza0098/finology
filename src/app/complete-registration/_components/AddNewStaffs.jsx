@@ -15,6 +15,7 @@ function AddStaff({businessId}) {
   }
 
   const [teamMembers, setTeamMembers] = useState([])
+  const [Loading, setLoading] = useState(true)
 
   useEffect(() => {
     // Fetch existing staff members from the API
@@ -25,6 +26,7 @@ function AddStaff({businessId}) {
         )
         console.log("Existing staff members:", response.data.management)
         setTeamMembers(response.data.management)
+        setLoading(false)
       } catch (error) {
         console.error("Error fetching staff members:", error)
       }
@@ -42,11 +44,17 @@ function AddStaff({businessId}) {
       <h1 className="text-xl font-semibold">Team Members</h1>
 
       {/* Circle avatars grid */}
-      <div className="flex flex-wrap gap-6 justify-center">
+
+      {Loading ? (
+        <span className="loading loading-infinity loading-xl text-[#5409DA]"></span>
+      ) : teamMembers.length === 0 ? (
+        <div>No team members found.</div>
+      ) : (
+         <div className="flex flex-wrap gap-6 justify-center">
         {teamMembers.map((member) => (
           <div
             key={member.id}
-            className="w-32 h-32 rounded-full bg-gradient-to-br from-purple-200 to-purple-400 flex flex-col items-center justify-center text-center shadow-lg p-2"
+            className="w-32 h-32 rounded-full  bg-[#4E71FF] flex flex-col items-center justify-center text-center shadow-lg p-2"
           >
             <span className="font-bold text-sm text-gray-900 truncate">
               {member.name}
@@ -67,6 +75,9 @@ function AddStaff({businessId}) {
           <UserPlus className="text-gray-600 w-8 h-8" />
         </Button>
       </div>
+      )
+    }
+
 
       {/* Conditionally render popup */}
       {open && (

@@ -27,14 +27,14 @@
 import { usePathname } from "next/navigation";
 import Header from "./Header";
 
-// Use RegExp objects for flexible matching
+
 const hiddenRoutes = [
   /^\/sign-in$/,
   /^\/sign-up$/,
   /^\/onboarding$/,
   /^\/admin(\/.*)?$/,           // Matches /admin and any nested path like /admin/users
   /^\/add-business(\/.*)?$/,    // Matches /add-business and any nested
-  /^\/complete-registration$/,   // Matches exactly /complete-registration
+  /^\/complete-registration(\/.*)?$/,  // Matches /complete-registration and any nested
 ];
 
 export default function HeaderVisibility() {
