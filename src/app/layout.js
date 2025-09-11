@@ -79,7 +79,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider appearance={{ baseTheme: shadesOfPurple }}>
-      <html lang="en" className="bg-[#BBFBFF]">
+      <html lang="en" className="bg-[#F5F5F5]">
         <body
           className={` ${poppins.variable} ${inter.variable} ${alice.variable} antialiased`}
         >

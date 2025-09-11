@@ -108,6 +108,13 @@ export default function CompanyCard({ business }) {
           <div className="flex gap-4 text-sm text-gray-600 mt-2">
             <span>
               💰{" "}
+              {latestFinancial?.shareReturnPercent
+                ? `${latestFinancial?.shareReturnPercent}%`
+                : "N/A"}{" "}
+              share returns
+            </span>
+            <span>
+              💰{" "}
               {latestFinancial?.revenue
                 ? `${latestFinancial.revenue}M`
                 : "N/A"}{" "}
