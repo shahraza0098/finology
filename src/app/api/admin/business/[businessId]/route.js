@@ -45,6 +45,11 @@ export async function GET(req,{ params }) {
   try {
     const soloBusiness = await prisma.business.findUnique({
       where: { id:businessId },
+       include: {
+    financials: true,     // fetch related ManagementMember[]
+    products: true,         // fetch related Owners[]
+    management: true,         // fetch related Stocks[]
+  },
     })
 
     const reviews= await prisma.review.findMany({

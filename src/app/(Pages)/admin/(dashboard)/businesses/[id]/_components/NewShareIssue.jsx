@@ -100,8 +100,8 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import axios from "axios"
-import { Button } from "@/components/UI/button"
-import { Input } from "@/components/UI/input"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import {
   Form,
   FormField,
@@ -109,7 +109,7 @@ import {
   FormLabel,
   FormControl,
   FormMessage,
-} from "@/components/UI/form"
+} from "@/components/ui/form"
 
 // ✅ Validation Schema (transform string → number)
 const schema = z.object({

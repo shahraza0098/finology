@@ -3,7 +3,7 @@
 
 "use client";
 
-import { BackgroundBeams } from "@/components/UI/BackgroundBeams";
+import { BackgroundBeams } from "@/components/ui/BackgroundBeams";
 import Image from "next/image";
 
 export default function Hero() {

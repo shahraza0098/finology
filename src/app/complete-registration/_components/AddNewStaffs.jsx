@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from "react"
-import { Button } from "@/components/UI/button"
+import { Button } from "@/components/ui/button"
 
 import { UserPlus, BriefcaseBusiness  } from "lucide-react"
 import AddNewStaffForm from "./AddStaffForm"

@@ -4,6 +4,11 @@ import  prisma  from '@/lib/prisma'
 export async function GET() {
   try {
     const businesses = await prisma.business.findMany({
+      include: {
+    financials: true,     // fetch related ManagementMember[]
+    products: true,         // fetch related Owners[]
+    management: true,         // fetch related Stocks[]
+  },
       orderBy: { createdAt: 'desc' },
     })
 

@@ -113,7 +113,7 @@ import ReviewList from "@/components/ReviewList"
 import { useUser } from "@clerk/nextjs"
 import axios from "axios"
 import NewShareIssue from "./_components/NewShareIssue"
-import { Button } from "@/components/UI/button"
+import { Button } from "@/components/ui/button"
 import Link  from "next/link"
 
 function BusinessListing({ params }) {

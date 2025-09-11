@@ -240,7 +240,7 @@
 import { usePathname } from 'next/navigation'
 import { UserButton } from '@clerk/nextjs'
 import React, { useState } from 'react'
-import { Sidebar, SidebarBody, SidebarLink } from '@/components/UI/sidebar'
+import { Sidebar, SidebarBody, SidebarLink } from '@/components/ui/sidebar'
 import { IconBrandTabler } from '@tabler/icons-react'
 import { Building2, Users, ClipboardCheck } from 'lucide-react'
 import { motion } from 'motion/react'
@@ -309,7 +309,7 @@ export default function AdminLayout({ children }) {
   const [open, setOpen] = useState(false)
 
   return (
-    <div className="min-h-screen bg-gray-500 dark:bg-neutral-900">
+    <div className="min-h-screen bg-[#BBFBFF] dark:bg-neutral-900">
       {/* Fixed Top Header */}
       <header className="fixed top-0 left-0 right-0 z-30 flex items-center justify-between border-b bg-gray-200 px-6 py-3 shadow-sm dark:border-neutral-700 dark:bg-neutral-800">
         <h1 className="text-lg font-semibold text-gray-800 dark:text-gray-200">

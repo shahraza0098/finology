@@ -1,0 +1,52 @@
+import prisma from "@/lib/prisma";
+
+
+export async function POST(request, { params }) {
+  const { businessId } = await params;
+  const {name,description} = await request.json();    
+   
+    try {
+        // Update the business with new members
+        const addProduct = await prisma.product.create({
+            data: {
+                businessId: businessId,
+                name,
+                description,
+            },
+        });
+        return new Response(JSON.stringify(addProduct), { status: 200 });
+    } catch (error) {
+        console.error('Error updating business product:', error);
+        return new Response('Internal Server Error', { status: 500 });
+    }
+}
+
+
+export async function GET(req, { params }) {
+  const { businessId } =await params; 
+
+ try {
+   const product = await prisma.product.findMany({
+     where: { businessId: businessId },
+     // include: {
+     //   products: true, // load ManagementMember[]
+     // },
+   });
+   console.log("product object hehehehe:", product);
+   
+ 
+   if (!product) {
+     return new Response(JSON.stringify({ error: "Product not found" }), {
+       status: 404,
+     });
+   }
+ 
+   return new Response(JSON.stringify(product), { status: 200 });
+ } catch (error) {
+  console.error('Error fetching business:', error)
+    return new Response(
+      JSON.stringify({ error: 'Internal Server Error' }),
+      { status: 500 }
+    )
+ }
+}

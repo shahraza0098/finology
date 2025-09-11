@@ -71,8 +71,8 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useBusinessForm } from "@/context/BusinessFormContext"
 import { useRouter } from "next/navigation"
-import { Input } from "@/components/UI/input"
-import { Button } from "@/components/UI/button"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
 import {
   Form,
   FormField,
@@ -80,7 +80,7 @@ import {
   FormLabel,
   FormMessage,
   FormControl,
-} from "@/components/UI/form"
+} from "@/components/ui/form"
 
 // ✅ Sector enum options (mirror Prisma enum)
 const sectorOptions = ["FMCG", "Transport", "Pharma", "RealEstate", "Gadgets"]

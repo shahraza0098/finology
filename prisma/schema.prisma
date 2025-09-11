@@ -247,6 +247,7 @@ model FinancialRecord {
   liabilities       Float?
   equity            Float?
   cashFlow          Float?
+  shareReturnPercent Float?
 
   createdAt  DateTime @default(now())
 

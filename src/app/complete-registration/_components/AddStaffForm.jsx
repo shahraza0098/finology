@@ -4,8 +4,8 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { Input } from "@/components/UI/input";
-import { Button } from "@/components/UI/button";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormField,
@@ -13,7 +13,7 @@ import {
   FormLabel,
   FormMessage,
   FormControl,
-} from "@/components/UI/form";
+} from "@/components/ui/form";
 
 const schema = z.object({
   name: z.string().min(2, "Name is required"),

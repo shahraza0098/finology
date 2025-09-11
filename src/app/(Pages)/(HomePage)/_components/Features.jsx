@@ -1,5 +1,5 @@
 // src/components/Features.tsx
-import {HoverEffect} from "@/components/UI/card-hover-effect"; 
+import {HoverEffect} from "@/components/ui/card-hover-effect"; 
 
 export const features = [
   {

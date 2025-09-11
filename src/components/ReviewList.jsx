@@ -3,14 +3,14 @@
 
 import { useUser } from '@clerk/nextjs'
 import { useState, useEffect } from 'react'
-import { Button } from '@/components/UI/button'
+import { Button } from '@/components/ui/button'
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogFooter,
   DialogTitle,
-} from '@/components/UI/dialog'
+} from '@/components/ui/dialog'
 import { toast } from 'sonner'
 import { Check, X, Loader2 } from 'lucide-react'
 

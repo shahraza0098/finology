@@ -13,6 +13,7 @@
     "@clerk/nextjs": "^6.27.1",
     "@clerk/themes": "^2.4.2",
     "@hookform/resolvers": "^5.2.1",
+    "@material-tailwind/react": "^2.1.10",
     "@prisma/client": "^6.12.0",
     "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-dialog": "^1.1.14",
@@ -22,6 +23,7 @@
     "@tabler/icons-react": "^3.34.1",
     "axios": "^1.11.0",
     "class-variance-authority": "^0.7.1",
+    "cloudinary": "^2.7.0",
     "clsx": "^2.1.1",
     "daisyui": "^5.0.50",
     "dotenv": "^17.2.1",
@@ -32,6 +34,7 @@
     "react-dom": "19.1.0",
     "react-hook-form": "^7.61.1",
     "sonner": "^2.0.7",
+    "styled-components": "^6.1.19",
     "tailwind-merge": "^3.3.1",
     "zod": "^4.0.14"
   },

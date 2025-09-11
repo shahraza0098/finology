@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
-import { Input } from "@/components/UI/input"
-import { Button } from "@/components/UI/button"
-import { Form, FormField, FormItem, FormLabel, FormMessage, FormControl } from "@/components/UI/form"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Form, FormField, FormItem, FormLabel, FormMessage, FormControl } from "@/components/ui/form"
 
 const schema = z.object({
   website: z.string().url().optional().or(z.literal("")),
