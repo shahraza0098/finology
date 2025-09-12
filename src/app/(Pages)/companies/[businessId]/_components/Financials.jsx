@@ -2,6 +2,8 @@ import MetricsCard from "@/components/FinancialMetricsCard";
 
 
 export default function FinancialsSection({ financials }) {
+
+  console.log("hey this is inspection of financial object", financials)
   return (
       <section id="financials" >
         <h2 className="text-xl font-bold mb-4 text-center">Financial Performance</h2>

@@ -37,6 +37,7 @@ const hiddenRoutes = [
   /^\/admin(\/.*)?$/,           // Matches /admin and any nested path like /admin/users
   /^\/add-business(\/.*)?$/,    // Matches /add-business and any nested
   /^\/complete-registration(\/.*)?$/,  // Matches /complete-registration and any nested
+  /^\/investor(\/.*)?$/,
 ];
 
 export default function FooterVisibility() {

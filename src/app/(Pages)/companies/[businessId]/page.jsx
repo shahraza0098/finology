@@ -160,6 +160,7 @@ import FinancialsSection from "./_components/Financials";
 import AchievementsSection from "./_components/Achievements";
 import Card from "./_components/Test";
 import PlusIcon from "./_components/PlusIcon";
+import SimpleBarChart from "./_components/DisplayCharts";
 
 
 
@@ -198,6 +199,7 @@ export default function CompanyProfilePage({ params }) {
       <div className="fixed bottom-6 right-6 z-50">
         <PlusIcon />
       </div>
+      <SimpleBarChart/>
       
     </div>
   );
