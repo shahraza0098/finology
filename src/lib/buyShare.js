@@ -23,7 +23,7 @@ export async function buyShares(userId, businessId, quantity) {
     }
 
     // 2. Deduct shares from business
-   const updatedBusiness= await tx.business.update({
+    await tx.business.update({
       where: { id: businessId },
       data: { totalShares: { decrement: quantity } },
     });
