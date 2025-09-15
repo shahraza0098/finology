@@ -195,7 +195,7 @@ export default function CompanyProfilePage({ params }) {
       {/* <ProductsSection products={business?.products} /> */}
       <ManagementSection management={business?.management} />
       <FinancialsSection financials={business?.financials} />
-      <AchievementsSection business={business} /> 
+      {/* <AchievementsSection business={business} />  */}
       <div className="fixed bottom-6 right-6 z-50">
         <PlusIcon />
       </div>

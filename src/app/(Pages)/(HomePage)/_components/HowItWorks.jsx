@@ -52,7 +52,7 @@ const whyInvest = [
 
 export default function HowItWorks() {
   return (
-    <section className="max-w-7xl mx-auto px-6 py-12 bg-[#8DD8FF] rounded-2xl">
+    <section className="max-w-7xl mx-auto px-6 py-12 bg-[#BBFBFF] rounded-2xl">
       {/* How It Works */}
       <div className="text-center mb-12">
         <h2 className="text-2xl font-bold">How It Works</h2>

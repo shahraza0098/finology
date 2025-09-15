@@ -141,7 +141,7 @@ function ManagementSection({ management }) {
         {management.map((member) => (
           <div
             key={member.id}
-            className="group relative overflow-hidden rounded-xl bg-[#8DD8FF] shadow-md transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+            className="group relative overflow-hidden rounded-xl border border-gray-400 shadow-md transition-all duration-300 hover:scale-105 hover:shadow-2xl"
           >
             {/* Card content */}
             <div className="flex flex-col items-center p-6">
