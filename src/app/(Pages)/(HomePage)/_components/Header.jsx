@@ -14,8 +14,8 @@ export default function Header() {
 // }
 // absolute inset-x-0 top-0 z-50
   return (
-    <header className=" bg-[#4E71FF]">
-      <div className="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center  text-[#DDF4E7]">
+    <header className=" bg-[#8DD8FF]">
+      <div className="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center   text-gray-700">
         {/* Logo */}
         <div className="h-10 w-auto flex items-center">
           <Image
@@ -28,11 +28,11 @@ export default function Header() {
         </div>
 
         <nav className="hidden md:flex space-x-8 text-sm font-medium ">
-          <Link href="/home">Home</Link>
-          <Link href="/about" className='hover:text-indigo-400'>About</Link>
-          <Link href="/features" className='hover:text-indigo-400'>Features</Link>
-          <Link href="/marketplace" className='hover:text-indigo-400'>Marketplace</Link>
-          <Link href="/companies" className='hover:text-indigo-400'>Company</Link>
+          <Link href="/home" className='text-base font-semibold tracking-wide hover:text-indigo-400'>Home</Link>
+          <Link href="/about" className= ' text-base font-semibold tracking-wide hover:text-indigo-400'>About</Link>
+          <Link href="/features" className='text-base font-semibold tracking-wide hover:text-indigo-400'>Features</Link>
+          <Link href="/marketplace" className='text-base font-semibold tracking-wide hover:text-indigo-400'>Marketplace</Link>
+          <Link href="/companies" className='text-base font-semibold tracking-wide hover:text-indigo-400'>Company</Link>
         </nav>
 
         <div>

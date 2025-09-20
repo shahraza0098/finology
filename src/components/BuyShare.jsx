@@ -57,6 +57,7 @@ export default function BuyShare({ business, onClose }) {
 
   return (
     <div className="space-y-4 p-2">
+      <h3 className="text-gray-700">Remaining Shares: {business.totalShares}</h3>
       <Input
         type="number"
         placeholder="Enter quantity"

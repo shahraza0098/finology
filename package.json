@@ -30,6 +30,7 @@
     "cloudinary": "^2.7.0",
     "clsx": "^2.1.1",
     "daisyui": "^5.0.50",
+    "dayjs": "^1.11.18",
     "dotenv": "^17.2.1",
     "lucide-react": "^0.534.0",
     "motion": "^12.23.12",
