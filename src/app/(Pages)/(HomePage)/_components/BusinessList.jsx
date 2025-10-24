@@ -233,7 +233,7 @@ export default function FeaturedBusinesses() {
   useEffect(() => {
     async function fetchBusinesses() {
       try {
-        const res = await fetch("http://localhost:3000/api/fetchbusiness");
+        const res = await fetch("/api/fetchbusiness");
         const data = await res.json();
         setBusinesses(data);
       } catch (error) {
