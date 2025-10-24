@@ -36,7 +36,7 @@ export default function HomePage() {
 
 
   return (
-    <main className="relative">
+    <main className=" relative">
       {/* <Header/> */}
       
       <Hero />

@@ -64,7 +64,7 @@ function Dashboard() {
 
 
 
-  if (!isLoaded || !dbUser || !user) {
+  if (!isLoaded || !dbUser || !user || !data) {
     return <div>Loading...</div>;
   }
 

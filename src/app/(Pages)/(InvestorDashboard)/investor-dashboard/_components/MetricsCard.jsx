@@ -3,9 +3,10 @@ import PortfolioMetricsCard from '../../_components/PortfolioMetricsCard';
 
 function DashboardMetricsCard({portfolioTransaction}) {
 
+  console.log("this is portfolio hehehhee",portfolioTransaction)
 
         if (!portfolioTransaction) {
-    return <div>Loading portfolio...</div>; // or null
+    return <div>No Portfolio Found. Start Investing</div>; // or null
   }
 
   console.log("object fetched", portfolioTransaction)

@@ -47,7 +47,7 @@ import {  Poppins, Inter, Alice  } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { shadesOfPurple } from "@clerk/themes";
-import { AuthProvider } from "@/context/AuthContext"
+
 
 import HeaderVisibility from "./(Pages)/(HomePage)/_components/HeaderVisibility";
 import FooterVisibility from "./(Pages)/(HomePage)/_components/FooterVisibility";
@@ -80,7 +80,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider appearance={{ baseTheme: shadesOfPurple }}>
-      <AuthProvider>
+      
       <html lang="en" className="bg-[#F5F5F5]">
         <body
           className={` ${poppins.variable} ${inter.variable} ${alice.variable} antialiased`}
@@ -94,7 +94,7 @@ export default function RootLayout({ children }) {
           </div>
         </body>
       </html>
-      </AuthProvider>
+      
     </ClerkProvider>
   );
 }

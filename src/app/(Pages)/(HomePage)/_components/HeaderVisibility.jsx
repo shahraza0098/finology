@@ -36,6 +36,7 @@ const hiddenRoutes = [
   /^\/add-business(\/.*)?$/,    // Matches /add-business and any nested
   /^\/complete-registration(\/.*)?$/,  // Matches /complete-registration and any nested
   /^\/investor-dashboard(\/.*)?$/,
+  /^\/companies(\/.*)?$/,
 ];
 
 export default function HeaderVisibility() {

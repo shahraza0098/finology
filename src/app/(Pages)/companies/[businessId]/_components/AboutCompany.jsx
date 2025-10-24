@@ -274,20 +274,20 @@ export default function AboutSection({ business }) {
               <Metric label="Market Cap" value="₹11,33,692 Cr." />
               <Metric
                 label="Revenue"
-                value={`₹${business?.financials[0].revenue || "-"}`}
+                value={`₹${business?.financials[0]?.revenue || "-"}`}
               />
               <Metric
                 label="Profit Margin"
-                value={`${business?.financials[0].profitMargin || "5.4%"}%`}
+                value={`${business?.financials[0]?.profitMargin || "5.4%"}%`}
               />
               <Metric
                 label="EBITDA"
-                value={`${business?.financials[0].ebitda || "1.43%"}%`}
+                value={`${business?.financials[0]?.ebitda || "1.43%"}%`}
               />
               <Metric label="ROI" value="64.6%" />
               <Metric
                 label="Net Profit"
-                value={`₹${business?.financials[0].netProfit || "-"}`}
+                value={`₹${business?.financials[0]?.netProfit || "-"}`}
               />
               <Metric label="Face Value" value="₹1.00" />
             </div>

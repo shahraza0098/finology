@@ -147,6 +147,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { AuthProvider } from "@/context/AuthContext"
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -195,6 +196,7 @@ export default function InvestorDashboardLayout({ children }) {
     : "lg:ml-64";           // expanded sidebar width = w-64 -> ml-64
 
   return (
+    <AuthProvider>
     <div className="flex min-h-screen bg-gray-50">
       {/* Mobile topbar (shown on small screens) */}
       <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 flex items-center justify-between px-4 py-3">
@@ -302,6 +304,7 @@ export default function InvestorDashboardLayout({ children }) {
         <div className="p-6 lg:p-8">{children}</div>
       </main>
     </div>
+    </AuthProvider>
   );
 }
 

@@ -216,11 +216,11 @@ export default function CompanyCard({ business }) {
           {/* Buy & Sell Buttons */}
           <div className="flex gap-3 mt-4" onClick={(e) => e.stopPropagation()}>
             {/* Buy Dialog */}
-            <Dialog>
+            <Dialog >
               <DialogTrigger asChild>
                 <button className="btn btn-outline btn-success">Buy</button>
               </DialogTrigger>
-              <DialogContent>
+              <DialogContent  className="bg-gradient-to-r from-slate-300 to-gray-400 text-[#3E3F29]">
                 <DialogHeader>
                   <DialogTitle>Buy Shares in {business.name}</DialogTitle>
                 </DialogHeader>

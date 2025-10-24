@@ -8,7 +8,8 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden isolate flex items-center justify-center min-h-screen text-[#4E71FF]">
+    <section className="relative rounded-b-4xl bg-gradient-to-br from-sky-50 via-blue-100 to-indigo-200
+ overflow-hidden isolate flex items-center  justify-center min-h-screen text-[#4E71FF]">
       {/* Animated Beams Background */}
       <BackgroundBeams className="z-0" />
 
@@ -24,7 +25,7 @@ export default function Hero() {
           </p>
           <div className="flex gap-4">
             <a
-              href="#"
+              href="http://localhost:3000/companies"
               className="bg-[#5409DA] hover:bg-indigo-600 text-white px-6 py-3 rounded-md font-medium transition"
             >
               Get Started
