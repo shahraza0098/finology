@@ -55,9 +55,10 @@
 import prisma from "@/lib/prisma";
 
 export async function POST(request, { params }) {
-  const { businessId } =  params;
+  
 
   try {
+    const { businessId } = await params;
     const { name, description } = await request.json();
 
     // ✅ Create a new product under this business
@@ -93,9 +94,10 @@ export async function POST(request, { params }) {
 }
 
 export async function GET(req, { params }) {
-  const { businessId } = params;
+  
 
   try {
+    const { businessId } = await params;
     const products = await prisma.product.findMany({
       where: { businessId },
     });
