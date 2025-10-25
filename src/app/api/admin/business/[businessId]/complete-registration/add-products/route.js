@@ -14,6 +14,11 @@ export async function POST(request, { params }) {
                 description,
             },
         });
+
+            await prisma.business.update({
+      where: { id: businessId },
+      data: { isFormCompleted: true },
+    });
         return new Response(JSON.stringify(addProduct), { status: 200 });
     } catch (error) {
         console.error('Error updating business product:', error);
