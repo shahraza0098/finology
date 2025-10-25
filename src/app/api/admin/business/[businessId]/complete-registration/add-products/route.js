@@ -93,7 +93,7 @@ export async function POST(request, { params }) {
 }
 
 export async function GET(req, { params }) {
-  const { businessId } = params;
+  const { businessId } =await params;
 
   try {
     const products = await prisma.product.findMany({
