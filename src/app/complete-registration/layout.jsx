@@ -114,33 +114,33 @@
 
 
 //src/app/complete-registration/layout.jsx
-import { Suspense } from 'react'
-import { BusinessFormContextProvider } from "@/context/BusinessFormContext"
-import Sidebar from "./_components/LayoutSidebar"
+// import { Suspense } from 'react'
+// import { BusinessFormContextProvider } from "@/context/BusinessFormContext"
+// import Sidebar from "./_components/LayoutSidebar"
 
-export default  function Layout({ children   }) {
+// export default  function Layout({ children   }) {
   
     
-//  const params = await searchParams   // ✅ await the whole thing
-//   const businessId = params?.businessId
-  // const businessId = "6ad35eee-d012-4fca-90bc-8990316555e8"
+// //  const params = await searchParams   // ✅ await the whole thing
+// //   const businessId = params?.businessId
+//   // const businessId = "6ad35eee-d012-4fca-90bc-8990316555e8"
   
 
-  return (
-    <BusinessFormContextProvider>
-      <div className="min-h-screen flex bg-gradient-to-br from-[#231942] via-[#5e548e] to-[#9f86c0] text-white">
-        <Suspense fallback={<div>Loading...</div>}>
-        <Sidebar   />  
-        </Suspense>
-        <main className="flex-1 p-10 bg-[#f9f7fb] text-black">
-          <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl p-10">
-            {children}
-          </div>
-        </main>
-      </div>
-    </BusinessFormContextProvider>
-  )
-}
+//   return (
+//     <BusinessFormContextProvider>
+//       <div className="min-h-screen flex bg-gradient-to-br from-[#231942] via-[#5e548e] to-[#9f86c0] text-white">
+//         <Suspense fallback={<div>Loading...</div>}>
+//         <Sidebar   />  
+//         </Suspense>
+//         <main className="flex-1 p-10 bg-[#f9f7fb] text-black">
+//           <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl p-10">
+//             {children}
+//           </div>
+//         </main>
+//       </div>
+//     </BusinessFormContextProvider>
+//   )
+// }
 
 
 
@@ -265,3 +265,26 @@ export default  function Layout({ children   }) {
 // }
 
 
+import { Suspense } from "react";
+import { BusinessFormContextProvider } from "@/context/BusinessFormContext";
+import Sidebar from "./_components/LayoutSidebar";
+
+export default function Layout({ children }) {
+  return (
+    <BusinessFormContextProvider>
+      <div className="min-h-screen flex flex-col md:flex-row bg-gradient-to-br from-[#231942] via-[#5e548e] to-[#9f86c0] text-white">
+        {/* Sidebar (responsive) */}
+        <Suspense fallback={<div className="p-6 text-center">Loading...</div>}>
+          <Sidebar />
+        </Suspense>
+
+        {/* Main content */}
+        <main className="flex-1 p-4 sm:p-6 md:p-10 bg-[#f9f7fb] text-black">
+          <div className="max-w-4xl mx-auto bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10">
+            {children}
+          </div>
+        </main>
+      </div>
+    </BusinessFormContextProvider>
+  );
+}
