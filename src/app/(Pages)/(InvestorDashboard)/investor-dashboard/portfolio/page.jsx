@@ -142,30 +142,175 @@
 //   );
 // }
 
+// "use client";
+// import { useEffect, useState } from "react";
+// import { useUser } from "@clerk/nextjs";
+// import { useAuth } from "@/context/AuthContext";
+// import axios from "axios";
+
+// export default function PortfolioPage() {
+//   const [data, setData] = useState(null);
+//   const [loading, setLoading] = useState(true);
+//   const { dbUser } = useAuth();
+//   const userId = dbUser?.id;
+
+//   const { isSignedIn, user, isLoaded } = useUser();
+
+//   useEffect(() => {
+//     const fetchUserInvestment = async () => {
+//       try {
+//         if (!dbUser?.id) return; // ✅ wait until dbUser is ready
+
+//         const res = await axios.get(`/api/investor/dashboard/${dbUser.id}`);
+//         setData(res.data);
+//         setLoading(false);
+//       } catch (err) {
+//         console.error("Failed to fetch investments", err);
+//       }
+//     };
+
+//     fetchUserInvestment();
+//   }, [dbUser]);
+
+//   if (loading)
+//     return (
+//       <div className="text-center p-10 text-gray-500">Loading portfolio...</div>
+//     );
+
+//   const { portfolio } = data;
+
+//   // 🧮 Calculations
+//   const totalInvested = portfolio.shares.reduce(
+//     (acc, s) => acc + s.quantity * s.priceAtBuy,
+//     0
+//   );
+
+//   const currentValue = portfolio.shares.reduce(
+//     (acc, s) => acc + s.quantity * s.business.sharePrice,
+//     0
+//   );
+
+//   const gainLoss = currentValue - totalInvested;
+//   const gainPercent = ((gainLoss / totalInvested) * 100).toFixed(2);
+//   const totalBusinesses = portfolio.shares.length;
+
+//   return (
+//     <div className="p-6 bg-gradient-to-b from-gray-50 via-white to-gray-100 min-h-screen text-gray-800">
+//       <h1 className="text-3xl font-bold mb-8 text-center text-gray-800">
+//         My Portfolio
+//       </h1>
+
+//       {/* Summary Cards */}
+//       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+//         <SummaryCard
+//           title="Total Invested"
+//           value={`₹${totalInvested.toLocaleString()}`}
+//         />
+//         <SummaryCard
+//           title="Current Value"
+//           value={`₹${currentValue.toLocaleString()}`}
+//         />
+//         <SummaryCard
+//           title="Gain/Loss"
+//           value={`${gainPercent}%`}
+//           valueClass={gainLoss >= 0 ? "text-green-600" : "text-red-500"}
+//         />
+//         <SummaryCard
+//           title="Businesses Invested"
+//           value={totalBusinesses}
+//         />
+//       </div>
+
+//       {/* Share List */}
+//       <div className="bg-white rounded-2xl p-5 shadow-md border border-gray-200">
+//         <h2 className="text-xl font-semibold mb-4 border-b border-gray-200 pb-2 text-gray-700">
+//           Your Holdings
+//         </h2>
+//         <div className="overflow-x-auto">
+//           <table className="w-full text-left text-gray-700">
+//             <thead>
+//               <tr className="border-b border-gray-200 text-gray-500 text-sm uppercase bg-gray-50">
+//                 <th className="py-3 px-4">Business</th>
+//                 <th className="py-3 px-4">Quantity</th>
+//                 <th className="py-3 px-4">Buy Price</th>
+//                 <th className="py-3 px-4">Current Price</th>
+//                 <th className="py-3 px-4">Current Value</th>
+//                 <th className="py-3 px-4">Gain/Loss (%)</th>
+//               </tr>
+//             </thead>
+//             <tbody>
+//               {portfolio.shares.map((share, i) => {
+//                 const currentVal = share.quantity * share.business.sharePrice;
+//                 const invested = share.quantity * share.priceAtBuy;
+//                 const percent = (((currentVal - invested) / invested) * 100).toFixed(2);
+
+//                 return (
+//                   <tr
+//                     key={i}
+//                     className="border-b border-gray-100 hover:bg-gray-50 transition"
+//                   >
+//                     <td className="py-3 px-4 font-medium">{share.business.name}</td>
+//                     <td className="py-3 px-4">{share.quantity}</td>
+//                     <td className="py-3 px-4">₹{share.priceAtBuy}</td>
+//                     <td className="py-3 px-4">₹{share.business.sharePrice}</td>
+//                     <td className="py-3 px-4">₹{currentVal.toLocaleString()}</td>
+//                     <td
+//                       className={`py-3 px-4 font-semibold ${
+//                         percent >= 0 ? "text-green-600" : "text-red-500"
+//                       }`}
+//                     >
+//                       {percent}%
+//                     </td>
+//                   </tr>
+//                 );
+//               })}
+//             </tbody>
+//           </table>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// function SummaryCard({ title, value, valueClass }) {
+//   return (
+//     <div className="bg-white border border-gray-200 rounded-2xl p-5 text-center shadow-sm hover:shadow-lg transition">
+//       <h3 className="text-gray-500 text-sm mb-2">{title}</h3>
+//       <p className={`text-2xl font-semibold ${valueClass || "text-gray-800"}`}>
+//         {value}
+//       </p>
+//     </div>
+//   );
+// }
+
+
+
+
 "use client";
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import { useAuth } from "@/context/AuthContext";
 import axios from "axios";
+import Link from "next/link";
 
 export default function PortfolioPage() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const { dbUser } = useAuth();
   const userId = dbUser?.id;
-
   const { isSignedIn, user, isLoaded } = useUser();
 
   useEffect(() => {
     const fetchUserInvestment = async () => {
       try {
-        if (!dbUser?.id) return; // ✅ wait until dbUser is ready
+        if (!dbUser?.id) return;
 
         const res = await axios.get(`/api/investor/dashboard/${dbUser.id}`);
         setData(res.data);
-        setLoading(false);
       } catch (err) {
         console.error("Failed to fetch investments", err);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -174,99 +319,109 @@ export default function PortfolioPage() {
 
   if (loading)
     return (
-      <div className="text-center p-10 text-gray-500">Loading portfolio...</div>
+      <div className="text-center p-10 text-gray-500 text-lg animate-pulse">
+        Loading your portfolio...
+      </div>
     );
 
-  const { portfolio } = data;
+  const { portfolio } = data || {};
 
-  // 🧮 Calculations
+  // 🧩 Handle Empty Portfolio
+  if (!portfolio || !portfolio.shares || portfolio.shares.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-100 text-gray-800 px-4">
+        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800 text-center">
+          Your Portfolio is Empty
+        </h1>
+        <p className="text-gray-600 mb-8 text-center max-w-md">
+          You haven’t invested in any local businesses yet. Start exploring
+          opportunities and build your portfolio today!
+        </p>
+        <Link
+          href="/companies"
+          className="bg-indigo-600 text-white font-medium px-6 py-3 rounded-xl shadow-md hover:bg-indigo-700 transition"
+        >
+          Start Investing
+        </Link>
+      </div>
+    );
+  }
+
+  // 🧮 Portfolio Calculations
   const totalInvested = portfolio.shares.reduce(
     (acc, s) => acc + s.quantity * s.priceAtBuy,
     0
   );
-
   const currentValue = portfolio.shares.reduce(
     (acc, s) => acc + s.quantity * s.business.sharePrice,
     0
   );
-
   const gainLoss = currentValue - totalInvested;
   const gainPercent = ((gainLoss / totalInvested) * 100).toFixed(2);
   const totalBusinesses = portfolio.shares.length;
 
   return (
     <div className="p-6 bg-gradient-to-b from-gray-50 via-white to-gray-100 min-h-screen text-gray-800">
-      <h1 className="text-3xl font-bold mb-8 text-center text-gray-800">
+      <h1 className="text-3xl font-bold mb-8 text-center text-gray-900">
         My Portfolio
       </h1>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
-        <SummaryCard
-          title="Total Invested"
-          value={`₹${totalInvested.toLocaleString()}`}
-        />
-        <SummaryCard
-          title="Current Value"
-          value={`₹${currentValue.toLocaleString()}`}
-        />
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+        <SummaryCard title="Total Invested" value={`₹${totalInvested.toLocaleString()}`} />
+        <SummaryCard title="Current Value" value={`₹${currentValue.toLocaleString()}`} />
         <SummaryCard
           title="Gain/Loss"
           value={`${gainPercent}%`}
           valueClass={gainLoss >= 0 ? "text-green-600" : "text-red-500"}
         />
-        <SummaryCard
-          title="Businesses Invested"
-          value={totalBusinesses}
-        />
+        <SummaryCard title="Businesses Invested" value={totalBusinesses} />
       </div>
 
-      {/* Share List */}
-      <div className="bg-white rounded-2xl p-5 shadow-md border border-gray-200">
+      {/* Holdings Table */}
+      <div className="bg-white rounded-2xl p-5 shadow-md border border-gray-200 overflow-x-auto">
         <h2 className="text-xl font-semibold mb-4 border-b border-gray-200 pb-2 text-gray-700">
           Your Holdings
         </h2>
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-gray-700">
-            <thead>
-              <tr className="border-b border-gray-200 text-gray-500 text-sm uppercase bg-gray-50">
-                <th className="py-3 px-4">Business</th>
-                <th className="py-3 px-4">Quantity</th>
-                <th className="py-3 px-4">Buy Price</th>
-                <th className="py-3 px-4">Current Price</th>
-                <th className="py-3 px-4">Current Value</th>
-                <th className="py-3 px-4">Gain/Loss (%)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {portfolio.shares.map((share, i) => {
-                const currentVal = share.quantity * share.business.sharePrice;
-                const invested = share.quantity * share.priceAtBuy;
-                const percent = (((currentVal - invested) / invested) * 100).toFixed(2);
+        <table className="w-full text-left text-gray-700 text-sm md:text-base">
+          <thead>
+            <tr className="border-b border-gray-200 text-gray-500 uppercase bg-gray-50 text-xs md:text-sm">
+              <th className="py-3 px-4">Business</th>
+              <th className="py-3 px-4">Quantity</th>
+              <th className="py-3 px-4">Buy Price</th>
+              <th className="py-3 px-4">Current Price</th>
+              <th className="py-3 px-4">Current Value</th>
+              <th className="py-3 px-4">Gain/Loss (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {portfolio.shares.map((share, i) => {
+              const currentVal = share.quantity * share.business.sharePrice;
+              const invested = share.quantity * share.priceAtBuy;
+              const percent = (((currentVal - invested) / invested) * 100).toFixed(2);
 
-                return (
-                  <tr
-                    key={i}
-                    className="border-b border-gray-100 hover:bg-gray-50 transition"
+              return (
+                <tr
+                  key={i}
+                  className="border-b border-gray-100 hover:bg-gray-50 transition"
+                >
+                  <td className="py-3 px-4 font-medium">{share.business.name}</td>
+                  <td className="py-3 px-4">{share.quantity}</td>
+                  <td className="py-3 px-4">₹{share.priceAtBuy}</td>
+                  <td className="py-3 px-4">₹{share.business.sharePrice}</td>
+                  <td className="py-3 px-4">₹{currentVal.toLocaleString()}</td>
+                  <td
+                    className={`py-3 px-4 font-semibold ${
+                      percent >= 0 ? "text-green-600" : "text-red-500"
+                    }`}
                   >
-                    <td className="py-3 px-4 font-medium">{share.business.name}</td>
-                    <td className="py-3 px-4">{share.quantity}</td>
-                    <td className="py-3 px-4">₹{share.priceAtBuy}</td>
-                    <td className="py-3 px-4">₹{share.business.sharePrice}</td>
-                    <td className="py-3 px-4">₹{currentVal.toLocaleString()}</td>
-                    <td
-                      className={`py-3 px-4 font-semibold ${
-                        percent >= 0 ? "text-green-600" : "text-red-500"
-                      }`}
-                    >
-                      {percent}%
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+                    {percent}%
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     </div>
   );
@@ -274,17 +429,13 @@ export default function PortfolioPage() {
 
 function SummaryCard({ title, value, valueClass }) {
   return (
-    <div className="bg-white border border-gray-200 rounded-2xl p-5 text-center shadow-sm hover:shadow-lg transition">
-      <h3 className="text-gray-500 text-sm mb-2">{title}</h3>
+    <div className="bg-white border border-gray-200 rounded-2xl p-5 text-center shadow-sm hover:shadow-lg transition duration-200 ease-in-out">
+      <h3 className="text-gray-500 text-sm mb-1">{title}</h3>
       <p className={`text-2xl font-semibold ${valueClass || "text-gray-800"}`}>
         {value}
       </p>
     </div>
   );
 }
-
-
-
-
 
 

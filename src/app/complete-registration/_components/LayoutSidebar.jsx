@@ -1,4 +1,4 @@
-// src/app/complete-registration/Sidebar.jsx
+// src/app/complete-registration/_components/Sidebar.jsx
 "use client"
  
 import { useSearchParams } from 'next/navigation'
