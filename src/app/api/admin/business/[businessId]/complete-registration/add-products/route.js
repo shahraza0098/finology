@@ -55,7 +55,7 @@
 import prisma from "@/lib/prisma";
 
 export async function POST(request, { params }) {
-  const { businessId } = await params;
+  const { businessId } =  params;
 
   try {
     const { name, description } = await request.json();
@@ -93,7 +93,7 @@ export async function POST(request, { params }) {
 }
 
 export async function GET(req, { params }) {
-  const { businessId } =await params;
+  const { businessId } = params;
 
   try {
     const products = await prisma.product.findMany({
